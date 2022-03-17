@@ -25,7 +25,7 @@ const App = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={backgroundStyle}
-          contentContainerStyle={{ flexGrow: 1 }}
+          contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 10 }}
         >
           <Root />
         </ScrollView>

@@ -44,8 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    paddingLeft: 12,
-    paddingRight: 12,
+    paddingHorizontal: 12,
     marginTop: 24,
     marginBottom: 24,
     fontSize: 24,

@@ -35,8 +35,7 @@ const styles = StyleSheet.create({
     minHeight: 56,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 5,
-    paddingRight: 5,
+    paddingHorizontal: 5,
   },
   btnText: {
     color: '#FFFFFF',
