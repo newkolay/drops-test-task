@@ -9,6 +9,8 @@ interface GameScreenProps {
   proceedToNextQuestion: (isAnswerCorrect: boolean) => void
   score: number
   restartGame: () => void
+  returnToStartScreen: () => void
+  difficulty: string | null
 }
 
 const GameScreen: FC<GameScreenProps> = ({
@@ -16,8 +18,10 @@ const GameScreen: FC<GameScreenProps> = ({
   proceedToNextQuestion,
   score,
   restartGame,
+  returnToStartScreen,
+  difficulty,
 }) => {
-  const questions = useQuestions()
+  const questions = useQuestions(difficulty)
 
   if (questions.isLoading || questions.isIdle || questions.isFetching) {
     return <Text>Loading questions...</Text>
@@ -39,6 +43,7 @@ const GameScreen: FC<GameScreenProps> = ({
           score={score}
           numberOfQuestions={questions.data.length}
           restartGame={restartGame}
+          returnToStartScreen={returnToStartScreen}
         />
       )}
     </View>
