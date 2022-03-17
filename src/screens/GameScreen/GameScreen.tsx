@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useQuestions } from '../../api/questions/useQuestions'
+import { Question } from '../../components/Question/Question'
 
 const GameScreen = () => {
   const questions = useQuestions()
@@ -13,9 +14,11 @@ const GameScreen = () => {
     return <Text>An error occured</Text>
   }
 
+  const firstQuestion = questions.data[0]
+
   return (
     <View style={styles.gameScreenStyle}>
-      <Text>{questions.data.length}</Text>
+      <Question question={firstQuestion} />
     </View>
   )
 }
