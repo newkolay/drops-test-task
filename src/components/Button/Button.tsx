@@ -23,6 +23,7 @@ const Button: FC<ButtonProps> = ({ children, onPress, style, isDisabled }) => {
       ]}
       onPress={onPress}
       disabled={isDisabled}
+      accessibilityRole="button"
     >
       <Text style={styles.btnText}>{children}</Text>
     </TouchableOpacity>

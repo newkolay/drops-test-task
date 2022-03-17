@@ -17,7 +17,7 @@ const QuestionResult: FC<QuestionResultProps> = ({
 
   return (
     <View>
-      <Text style={styles.questionResultText}>
+      <Text style={styles.questionResultText} testID="text-result">
         {isAnswerCorrect
           ? 'Correct answer! ☺️'
           : `Wrong answer 😔 \n Correct one: ${decodeURIComponent(
