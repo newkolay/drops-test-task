@@ -7,23 +7,22 @@ import { Button } from '../Button/Button'
 
 interface QuestionProps {
   question: QuestionModel
+  proceedToNextQuestion: (isAnswerCorrect: boolean) => void
 }
 
-const Question: FC<QuestionProps> = ({
-  question: { question, correct_answer, incorrect_answers },
-}) => {
-  const { userAnswer, validateAnswer, generateAnswers } = useQuestion()
-  const allAnswers = generateAnswers(correct_answer, incorrect_answers)
+const Question: FC<QuestionProps> = ({ question, proceedToNextQuestion }) => {
+  const { userAnswer, validateAnswer, allAnswers } = useQuestion(question)
 
   return (
     <View style={styles.questionWrapper}>
-      <Text style={styles.title}>{decodeURIComponent(question)}</Text>
+      <Text style={styles.title}>{decodeURIComponent(question.question)}</Text>
 
       {allAnswers.map((answer) => (
         <Button
           key={answer}
           onPress={() => validateAnswer(answer)}
           style={styles.answerButton}
+          isDisabled={!!userAnswer}
         >
           {decodeURIComponent(answer)}
         </Button>
@@ -32,7 +31,8 @@ const Question: FC<QuestionProps> = ({
       {userAnswer && (
         <QuestionResult
           userAnswer={userAnswer}
-          correctAnswer={correct_answer}
+          correctAnswer={question.correct_answer}
+          proceedToNextQuestion={proceedToNextQuestion}
         />
       )}
     </View>
@@ -44,10 +44,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    color: '#000000',
-    fontSize: 24,
+    paddingLeft: 12,
+    paddingRight: 12,
     marginTop: 24,
     marginBottom: 24,
+    fontSize: 24,
     textAlign: 'center',
   },
   answerButton: {

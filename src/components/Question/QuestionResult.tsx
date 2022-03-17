@@ -5,11 +5,13 @@ import { Button } from '../Button/Button'
 interface QuestionResultProps {
   userAnswer: string
   correctAnswer: string
+  proceedToNextQuestion: (isAnswerCorrect: boolean) => void
 }
 
 const QuestionResult: FC<QuestionResultProps> = ({
   userAnswer,
   correctAnswer,
+  proceedToNextQuestion,
 }) => {
   const isAnswerCorrect = userAnswer === correctAnswer
 
@@ -22,7 +24,9 @@ const QuestionResult: FC<QuestionResultProps> = ({
               correctAnswer
             )}`}
       </Text>
-      <Button onPress={() => {}}>Next Question</Button>
+      <Button onPress={() => proceedToNextQuestion(isAnswerCorrect)}>
+        Next Question
+      </Button>
     </View>
   )
 }

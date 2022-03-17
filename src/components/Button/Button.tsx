@@ -10,11 +10,20 @@ import {
 interface ButtonProps {
   onPress: () => void
   style?: StyleProp<TextStyle>
+  isDisabled?: boolean
 }
 
-const Button: FC<ButtonProps> = ({ children, onPress, style }) => {
+const Button: FC<ButtonProps> = ({ children, onPress, style, isDisabled }) => {
   return (
-    <TouchableOpacity style={[styles.btnBody, style]} onPress={onPress}>
+    <TouchableOpacity
+      style={[
+        styles.btnBody,
+        style,
+        isDisabled ? styles.disabledButton : styles.normalButton,
+      ]}
+      onPress={onPress}
+      disabled={isDisabled}
+    >
       <Text style={styles.btnText}>{children}</Text>
     </TouchableOpacity>
   )
@@ -22,15 +31,22 @@ const Button: FC<ButtonProps> = ({ children, onPress, style }) => {
 
 const styles = StyleSheet.create({
   btnBody: {
-    backgroundColor: '#24a0ed',
     width: '100%',
-    height: 56,
+    minHeight: 56,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingLeft: 5,
+    paddingRight: 5,
   },
   btnText: {
     color: '#FFFFFF',
     fontSize: 24,
+  },
+  normalButton: {
+    backgroundColor: '#24A0ED',
+  },
+  disabledButton: {
+    backgroundColor: '#A9A9A9',
   },
 })
 

@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 import { useGame } from './hooks/useGame'
 import { GameScreen } from './screens/GameScreen/GameScreen'
 import { StartScreen } from './screens/StartScreen/StartScreen'
 
 const Root = () => {
-  const { isGameStarted, startGame } = useGame()
+  const { isGameStarted, startGame, step, proceedToNextQuestion, score } =
+    useGame()
 
   if (isGameStarted) {
-    return <GameScreen />
+    return (
+      <GameScreen
+        step={step}
+        score={score}
+        proceedToNextQuestion={proceedToNextQuestion}
+        restartGame={startGame}
+      />
+    )
   }
 
   return <StartScreen startGame={startGame} />
